@@ -12,7 +12,7 @@ To track both numbers, farms weigh a sample from every cage about every two week
 
 Niloscale replaces the net with a camera. A stereo camera films the fish as they swim past. My trained computer vision algorithm then finds every fish that is fully visible and side-on, measures its length in 3D and converts that length and surface area mesh into a weight. The farmer gets the ABW and a weight histogram for each cage, and fish no longer have to be harmed in the weighing process.
 
-I started TilapAI in 2023 and write all of the software from the capture scripts on the camera to the farmer dashboard as well as building the hardware out of commercial products. Our farm partner is Yalelo. The first field test ran in March 2026, and the second version, rebuilt around what that test taught us, goes back into the water in November.
+I started TilapAI in 2023 and write all of the software from the capture scripts on the camera to the farmer dashboard as well as building the hardware out of commercial products. Our farm partner is one of Africa's largest tilapia farms, spanning several countries. The first field test ran in March 2026, and the second version, rebuilt around what that test taught us, goes back into the water in November.
 
 This page covers the engineering behind it.
 
@@ -85,7 +85,7 @@ If you'd like to see the code, I'm happy to walk you through it on a call.
 
 ## Code excerpts
 
-Four short excerpts that show how the code works without giving the pipeline away. The checksum is cut short, and the law's coefficients are left out because they come from Yalelo's data.
+Four short excerpts that show how the code works without giving the pipeline away. The checksum is cut short, and the farm's name and the law's coefficients are left out.
 
 A detector card. The model's size, resolution and threshold travel together, and the Docker build checks the weights against the checksum.
 
@@ -115,11 +115,11 @@ A length-weight law card. The status line says what hasn't been checked yet.
 
 ```json
 {
-  "id": "yalelo_harvest_tl_nls_2026-09-24_v1",
+  "id": "farm_harvest_tl_nls_2026-09-24_v1",
   "formula": "weight_g = a * total_length_cm ** b",
   "length_type": "total",
   "calibration_range_cm": [16.7, 41.2],
-  "source": "129 Yalelo harvest fish weighed and measured nose to tail tip, received 2026-09-24. Nonlinear least squares on grams, all records kept.",
+  "source": "129 harvest fish from the partner farm, weighed and measured nose to tail tip, received 2026-09-24. Nonlinear least squares on grams, all records kept.",
   "status": "Provisional default. Leave-one-fish-out MAE 36 g (FishBase: 87 g). Not yet checked on independent cages or dates."
 }
 ```
